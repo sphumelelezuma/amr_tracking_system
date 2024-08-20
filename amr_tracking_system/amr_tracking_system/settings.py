@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'amr_app',
 ]
 
 MIDDLEWARE = [
@@ -73,16 +74,19 @@ WSGI_APPLICATION = 'amr_tracking_system.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+from decouple import config
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'amr_database',
-        'USER': 'root',
-        'PASSWORD': 'Dream2024#',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'NAME': config('DB_NAME', default='amr_database'),
+        'USER': config('DB_USER', default='yourusername'),
+        'PASSWORD': config('DB_PASSWORD', default='yourpassword'),
+        'HOST': config('DB_HOST', default='localhost'),
+        'PORT': config('DB_PORT', default='3306'),
     }
 }
+
 
 
 
