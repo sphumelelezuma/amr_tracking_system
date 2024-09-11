@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
+from dotenv import load_dotenv
+import os
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +29,8 @@ SECRET_KEY = 'django-insecure-r(ys$$5c92o1n9z8w20_6_yi_8pmidx@h1&q-15c2pjm7wbl^y
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.0.155',
+                 '127.0.0.1']
 
 
 # Application definition
@@ -37,8 +42,30 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'amr_app',
+    'rest_framework', #Added DRF
+    'rest_framework.authtoken',
+    'rest_framework_simplejwt.token_blacklist',
+    'amr_app', #Added appname
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    ],
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True,
+    'AUTH_HEADER_TYPES': ('Bearer',),
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -55,7 +82,7 @@ ROOT_URLCONF = 'amr_tracking_system.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -63,6 +90,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.csrf',
             ],
         },
     },
@@ -70,23 +98,53 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'amr_tracking_system.wsgi.application'
 
+# URL configuration for login, logout, and redirection after login/logout
+LOGIN_URL = 'login'  # URL to redirect users to if not logged in
+LOGIN_REDIRECT_URL = 'home'  # URL to redirect users to after login
+LOGOUT_REDIRECT_URL = 'login'  # URL to redirect users to after logout
+
+
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-from decouple import config
+# from decouple import config
+# from dotenv import load_dotenv
+# import os
+
+load_dotenv(os.path.join(os.path.dirname(__file__), '.env'))
+
+# load_dotenv()
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.mysql",
+#         "NAME": "amr_database",
+#         "USER": "root",
+#         "PASSWORD": "Dream2024#",
+#         "HOST": "localhost",
+#         "PORT": "3306",
+#     }
+# }
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': config('DB_NAME', default='amr_database'),
-        'USER': config('DB_USER', default='yourusername'),
-        'PASSWORD': config('DB_PASSWORD', default='yourpassword'),
-        'HOST': config('DB_HOST', default='localhost'),
-        'PORT': config('DB_PORT', default='3306'),
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        'PORT': config('DB_PORT', cast=int),
+        'OPTIONS': {
+            'charset': 'utf8mb4',
+        },
     }
 }
-
+# print(config('DB_NAME'))
+# print(config('DB_USER'))
+# print(config('DB_PASSWORD'))
+# print(config('DB_HOST'))
+# print(config('DB_PORT'))
 
 
 
@@ -126,7 +184,19 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+# Static and Media files configuration
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+MEDIA_URL ='/images/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'images')
+# Additional locations for static files
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# X_FRAME_OPTIONS = 'SAMEORIGIN'

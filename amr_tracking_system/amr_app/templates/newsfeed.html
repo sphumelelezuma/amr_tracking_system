@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Newsfeed</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <!-- Bootstrap JS and dependencies (jQuery and Popper.js) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.8/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js"></script>
+    {% load static %}
+    <script src="{% static 'pdf_viewer.js' %}" defer></script>
+
+</head>
+<body>
+    <!-- Header with toggleable navigation -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="{% url 'home' %}">AMR Tracker</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'publications' %}">Publications</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content Container -->
+    <div class="container mt-5">
+        <h1>Welcome to the Newsfeed</h1>
+
+        <!-- Bootstrap Grid System for layout -->
+        <div class="row">
+            <div class="col-12 col-md-8 mx-auto">
+                
+                <!-- Create Post Form -->
+                <form method="POST" enctype="multipart/form-data" class="mb-4">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <textarea id="content" name="content" class="form-control" rows="3" placeholder="What's on your mind?" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="image-upload" class="form-label">Upload Image:</label>
+                        <input type="file" id="image-upload" name="image" class="form-control-file" accept="image/*">
+
+                        <label for="document-upload" class="form-label mt-2">Upload Document:</label>
+                        <input type="file" id="document-upload" name="document" class="form-control-file" accept=".pdf,.docx,.doc,.txt">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Post</button>
+                </form>
+
+                <!-- List of Posts -->
+                <div class="posts">
+                    {% for post in posts %}
+                    <div class="post mb-4 p-3 bg-light rounded">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <p><strong>{{ post.user.username }}</strong> posted at {{ post.created_at }}</p>
+                            {% if post.user == request.user %}
+                            <!-- Three-dot menu for the post -->
+                            <div class="dropdown">
+                                <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton{{ post.id }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    &#8226;&#8226;&#8226;
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton{{ post.id }}">
+                                    <a class="dropdown-item text-danger" href="{% url 'delete_post' post.id %}">
+                                        <i class="fa fa-trash"></i> Delete
+                                    </a>
+                                </div>
+                            </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Post Content -->
+                        <p>{{ post.content }}</p>
+
+                        <!-- Post Image -->
+                        {% if post.image %}
+                        <div>
+                            <img src="{{ post.image.url }}" alt="Post Image" style="max-width: 100%; height: auto;">
+                            <a href="{{ post.image.url }}" download class="file-link">Download Image</a>
+                        </div>
+                        {% endif %}
+
+                        <!-- Post Document -->
+                        {% if post.document %}
+                        <div>
+                            <p>Document: {{ post.document.name }}</p>
+                            {% with file_extension=post.document.name|slice:"-4:" %}
+                                {% if file_extension == '.pdf' %}
+                                    <!-- Embed PDF for preview -->
+                                    <div id="pdf-viewer-{{ post.id }}"></div>
+                                    <input type="hidden" id="pdf-url-{{ post.id }}" value="{{ post.document.url }}">
+                                    <a href="{{ post.document.url }}" download class="file-link">Download PDF</a>
+                                    {% else %}
+                                    <!-- Provide download link for all other file types -->
+                                    <a href="{{ post.document.url }}" target="_blank" class="file-link">Download File</a>
+                                {% endif %}
+                            {% endwith %}
+                        </div>
+                        {% endif %}
+
+                        <!-- Reactions (Like, Dislike, Heart) -->
+                        <div class="reactions">
+                            <a href="{% url 'add_reaction' post.id 'like' %}">👍 Like</a>
+                            <a href="{% url 'add_reaction' post.id 'dislike' %}">👎 Dislike</a>
+                            <a href="{% url 'add_reaction' post.id 'heart' %}">❤️ Heart</a>
+                        </div>
+
+                        <!-- Comments Section -->
+                        <div class="comments mt-3">
+                            {% for comment in post.comments.all %}
+                            <p><strong>{{ comment.user.username }}:</strong> {{ comment.content }}</p>
+                            {% endfor %}
+                            <form method="POST" action="{% url 'add_comment' post.id %}">
+                                {% csrf_token %}
+                                <input type="text" name="content" class="form-control" placeholder="Add a comment" required>
+                                <button type="submit" class="btn btn-secondary mt-2">Comment</button>
+                            </form>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <p>No posts yet. Be the first to share something!</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center mt-5">
+        <p>&copy; 2024 Your Company. All rights reserved.</p>
+    </footer>
+</body>
+</html>

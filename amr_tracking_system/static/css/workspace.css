@@ -1,0 +1,131 @@
+/* Reset default margins and paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Basic styling for the workspace */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* Header styling */
+header {
+    background-color: #82A9BF;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+header .profile img {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+/* Aside styling */
+aside {
+    width: 250px;
+    background-color: #343a40;
+    color: white;
+    padding: 15px;
+    height: calc(100vh - 50px); /* Adjusted for header height */
+    overflow-y: auto;
+    position: fixed;
+    top: 56px;
+    left: 0;
+}
+
+/* Navigation styling */
+aside nav ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+aside nav ul li {
+    margin: 10px 0;
+}
+
+aside nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+aside nav ul li a:hover {
+    color: #007bff;
+}
+
+/* Main content styling */
+main {
+    margin-left: 250px;
+    padding: 20px;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.card {
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+}
+
+.card-header {
+    background-color: #f8f9fa;
+    font-weight: bold;
+}
+
+/* Card body styling */
+.card-body {
+    background-color: #ffffff;
+    padding: 15px;
+}
+
+.card-body ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.card-body ul li {
+    margin-bottom: 10px;
+}
+
+/* Quick Actions Card */
+.card .card-body ul li a {
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+/* Insights and Visualization Highlights */
+.card .card-body h5 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #007bff;
+}
+
+.card .card-body p, .card .card-body ul {
+    margin-bottom: 15px;
+}
+
+.card .card-body a.btn-warning {
+    background-color: #ffc107;
+    border-color: #ffc107;
+    color: #212529;
+}
+
+.card .card-body a.btn-warning:hover {
+    background-color: #e0a800;
+    border-color: #d39e00;
+    color: #212529;
+}

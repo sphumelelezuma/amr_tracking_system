@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Entry Form</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/data_entry_form.css' %}">
+    <script src="{% static 'js/data_entry_form.js' %}" defer></script>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav class="navbar">
+    <div class="logo">AMR Tracker</div>
+    <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/workspace/">Workspace</a></li>
+        <li><a href="/data_review/">Data Review</a></li>
+        <li><a href="/visualization_dashboard/">Dashboard</a></li>
+        <li><a href="/logout/">Logout</a></li>
+    </ul>
+    <div class="menu-icon">
+        <span class="menu-line"></span>
+        <span class="menu-line"></span>
+        <span class="menu-line"></span>
+    </div>
+</nav>
+
+<div class="container">
+    <h1>Data Entry Form</h1>
+    {% if user.is_authenticated %}
+    <form method="POST" action="{% url 'data_review' %}" id="data-entry-form">
+        {% csrf_token %}
+
+        <label for="pathogen-select">Pathogen:</label>
+        <select id="pathogen-select" name="pathogen">
+            <option value="">-- Select a Pathogen --</option>
+            {% for pathogen in pathogens %}
+                <option value="{{ pathogen.id }}">{{ pathogen.name }}</option>
+            {% endfor %}
+        </select>
+        <input type="text" id="pathogen-input" name="new_pathogen" placeholder="Or type new pathogen" />
+
+        <label for="location-select">Location:</label>
+        <select id="location-select" name="location">
+            <option value="">-- Select a Location --</option>
+            {% for location in locations %}
+                <option value="{{ location.id }}">{{ location.name }}</option>
+            {% endfor %}
+        </select>
+        <input type="text" id="location-input" name="new_location" placeholder="Or type new location" />
+
+        <label for="resistance_percentage">Resistance Percentage:</label>
+        <input type="number" id="resistance_percentage" name="resistance_percentage" min="0" max="100" step="0.01" required>
+
+        <label for="date_collected">Date Collected:</label>
+        <input type="date" id="date_collected" name="date_collected" required>
+
+        <button type="submit">Submit Data</button>
+    </form>
+    {% endif %}
+</div>
+
+</body>
+</html>

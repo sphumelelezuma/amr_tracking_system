@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register for AMR Tracker</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+  <div class="container mt-5">
+    <h2 class="text-center" style="color: black; font-family: Arial, sans-serif;">Register for AMR Tracker</h2>
+    <form method="POST" action="{% url 'register' %}">
+      <div style="display: none;">
+        {% csrf_token %}
+      </div>
+      <div class="form-group">
+        <label for="username" style="color: black;">Username</label>
+        <input type="text" class="form-control" id="username" name="username" required>
+      </div>
+      <div class="form-group">
+        <label for="email" style="color: black;">Email</label>
+        <input type="email" class="form-control" id="email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="password1" style="color: black;">Password</label>
+        <input type="password" class="form-control" id="password1" name="password1" required>
+      </div>
+      <div class="form-group">
+        <label for="password2" style="color: black;">Confirm Password</label>
+        <input type="password" class="form-control" id="password2" name="password2" required>
+      </div>
+      <button type="submit" class="btn btn-block" style="background-color: #82A9BF; color: white;">Register</button>
+    </form>
+    <p class="text-center mt-3">Already have an account? <a href="{% url 'login' %}">Login here</a></p>
+  </div>
+</body>
+</html>

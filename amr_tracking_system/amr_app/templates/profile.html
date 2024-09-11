@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- FontAwesome for Social Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Custom CSS -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <!-- Custom JavaScript -->
+    <script src="{% static 'js/profile.js' %}" defer></script>
+</head>
+<body>
+    <header>
+        <div class="logo">AMR Tracker</div>
+        <div class="profile">
+            <img id="profileImage" src="{% static 'images/user-profile.jpg' %}" alt="Profile Picture">
+            <span>Tae</span>
+        </div>
+    </header>
+    <aside>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'chat' %}">Chat</a></li>
+                <li><a href="{% url 'tasks' %}">Tasks</a></li>
+                <li><a href="{% url 'workspace' %}">Workspace</a></li>
+                <li><a href="{% url 'search' %}">Search</a></li>
+                <li><a href="{% url 'data_entry' %}">Data Entry</a></li>
+                <li><a href="{% url 'data_review' %}">Data Review</a></li>
+                <li><a href="{% url 'visualization_dashboard' %}">Dashboard</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <main id="main-content">
+        <div class="container mt-5">
+            <!-- Profile Section at the Top -->
+            <section class="profile-section">
+                <div class="profile-card card p-4">
+                    <!-- Profile Header -->
+                    <div class="profile-header text-center">
+                      <img id="profileImage" src="{{ user.userprofile.profile_picture.url }}" alt="Profile Picture" class="profile-picture rounded-circle">
+                        <h2 class="username mt-3">{{ user.username }}</h2>
+                        <input type="file" name="profile_picture" id="profilePicInput" class="d-none">
+                        <button type="button" id="choosePicBtn" class="btn btn-secondary">Choose Picture</button>
+                        <button class="btn btn-secondary mt-2" id="updatePicBtn">Update Profile Picture</button>
+                    </div>
+
+                    <!-- Profile Details -->
+                    <article class="profile-details mt-4">
+                        <form id="profilePicForm" action="{% url 'update_profile_pic' %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <button class="btn btn-primary mt-2" id="editProfileBtn">Edit Profile</button>
+                        </form>
+                        <div class="info-item mt-3">
+                            <div id="profileBio" class="profile-bio">This is the current bio...</div>
+                            <textarea id="bioEdit" class="d-none form-control" rows="3"></textarea>
+                        </div>
+                    </article>
+                </div>
+            </section>
+            <!-- Other Content Below -->
+        </div>
+    </main>
+</body>
+</html>

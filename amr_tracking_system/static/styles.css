@@ -1,0 +1,164 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: black;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #82A9BF;
+}
+
+.navbar-brand {
+    color: #4A4A4A !important; /* Soft grey color */
+    font-weight: bold;
+    font-family: Helvetica, sans-serif;
+}
+
+.navbar-brand:hover {
+    color: #023350 !important; /* Lighter blue on hover */
+}
+
+.navbar .nav-link {
+    color: white;
+    padding: 10px;
+}
+
+.navbar .nav-link:hover {
+    background-color: #005580; /* Lighter blue on hover */
+    color: #fff;
+}
+
+.navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/* Container */
+.container {
+    margin-top: 50px;
+    max-width: 800px;
+}
+
+/* Form Labels */
+.form-group label {
+    color: black;
+    font-weight: bold;
+}
+
+/* Form Inputs */
+.form-control, .form-control-file {
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+/* Buttons */
+.btn {
+    background-color: #82A9BF;
+    color: white;
+    border: none;
+}
+
+.btn:hover {
+    background-color: #D5E8EF;
+    color: black;
+}
+
+/* Heading Styling */
+h1, h2 {
+    font-family: Helvetica, sans-serif;
+    color: black;
+}
+
+/* Text */
+p {
+    color: black;
+}
+
+/* Home Page Specific */
+.home-intro {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.home-intro p {
+    font-size: 20px;
+    color: #0044cc;
+}
+
+/* Newsfeed Page */
+.post {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.post img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 15px;
+}
+
+.reactions {
+    margin-top: 10px;
+}
+
+.reactions a {
+    margin-right: 10px;
+    text-decoration: none;
+    color: #005580;
+}
+
+.reactions a:hover {
+    text-decoration: underline;
+}
+
+.comments {
+    margin-top: 15px;
+    padding-left: 20px;
+}
+
+.comments form {
+    margin-top: 10px;
+}
+
+.file-link {
+    display: block;
+    margin-top: 10px;
+    color: #005580;
+}
+
+.file-link:hover {
+    text-decoration: underline;
+}
+
+/* Logout Button */
+.logout-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.logout-btn {
+    background-color: #FF6347;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+    background-color: #FF4500;
+}

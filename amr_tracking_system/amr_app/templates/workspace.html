@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workspace - AMR Tracker</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/workspace.css' %}">
+</head>
+<body>
+    <header>
+        <div class="logo">AMR Tracker</div>
+        <div class="profile">
+            <img src="{% static 'images/user-profile.jpg' %}" alt="Profile Picture">
+            <span>Tae</span>
+        </div>
+    </header>
+    <aside>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'chat' %}">Chat</a></li>
+                <li><a href="{% url 'tasks' %}">Tasks</a></li>
+                <li><a href="{% url 'profile' %}">Profile</a></li>
+                <li><a href="{% url 'search' %}">Search</a></li>
+                <li><a href="{% url 'data_entry' %}">Data Entry</a></li>
+                <li><a href="{% url 'data_review' %}">Data Review</a></li>
+                <li><a href="{% url 'visualization_dashboard' %}">Dashboard</a></li>
+                <li><a href="{% url 'reports' %}">Reports</a></li>
+                <li><a href="{% url 'settings' %}">Settings</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <main id="main-content">
+        {% block content %}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">Quick Actions</div>
+                        <div class="card-body">
+                            <ul>
+                                <li><a href="{% url 'data_entry' %}" class="btn btn-primary">Add New Data</a></li>
+                                <li><a href="{% url 'data_review' %}" class="btn btn-secondary">Review Data</a></li>
+                                <li><a href="{% url 'visualization_dashboard' %}" class="btn btn-success">View Dashboard</a></li>
+                                <li><a href="{% url 'reports' %}" class="btn btn-info">Generate Reports</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">Recent Activities</div>
+                        <div class="card-body">
+                            <ul>
+                                <li>Data entry completed for <strong>School A</strong> by John Doe.</li>
+                                <li>New AMR trend report generated, focusing on <strong>Healthcare Facility B</strong>.</li>
+                                <li>Profile updated by <strong>Tae</strong>.</li>
+                                <li>New dataset on <strong>MRSA</strong> added.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card mt-4">
+                        <div class="card-header">Upcoming Tasks</div>
+                        <div class="card-body">
+                            <ul>
+                                <li>Complete data entry for <strong>Community C</strong>.</li>
+                                <li>Review recent AMR data from <strong>School D</strong>.</li>
+                                <li>Prepare presentation for next <strong>Research Symposium</strong>.</li>
+                                <li>Update AMR trends dashboard with <strong>September</strong> data.</li>
+                                <li>Finalize and submit report on <strong>Antibiotic Resistance Rates</strong>.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card mt-4">
+                        <div class="card-header">AMR Insights</div>
+                        <div class="card-body">
+                            <h5>Recent Trends:</h5>
+                            <p><strong>Mycobacterium tuberculosis</strong> resistance has increased by <strong>10%</strong> in the last quarter.</p>
+                            <p><strong>MRSA</strong> cases are rising in urban areas. Focus needed on effective treatments.</p>
+                            <h5>Key Data Points:</h5>
+                            <ul>
+                                <li>Highest resistance rate recorded in <strong>Healthcare Facility X</strong>.</li>
+                                <li><strong>E. coli</strong> shows decreased resistance in rural areas.</li>
+                                <li>New resistance patterns emerging in <strong>Community Y</strong>.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card mt-4">
+                        <div class="card-header">Data Visualization Highlights</div>
+                        <div class="card-body">
+                            <p>Explore the latest visualizations on the <strong>Dashboard</strong> to understand AMR patterns:</p>
+                            <ul>
+                                <li>Resistance Trends by Region</li>
+                                <li>Antibiotic Efficacy Over Time</li>
+                                <li>Heatmap of High-Resistance Areas</li>
+                            </ul>
+                            <a href="{% url 'visualization_dashboard' %}" class="btn btn-warning">Go to Dashboard</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+    </main>
+    <!-- JavaScript -->
+    <script src="{% static 'js/workspace.js' %}"></script>
+    <!-- Optional JavaScript for Bootstrap (if needed) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

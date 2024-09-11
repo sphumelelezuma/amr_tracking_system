@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Review</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/data_review.css' %}">
+</head>
+<body>
+
+<div class="container">
+    <h1>Data Review</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Pathogen</th>
+                <th>Location</th>
+                <th>Resistance Percentage</th>
+                <th>Date Collected</th>
+                <th>User</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in resistance_data %}
+                <tr>
+                    <td>{{ data.pathogen.name }}</td>
+                    <td>{{ data.location.name }}</td>
+                    <td>{{ data.resistance_percentage }}%</td>
+                    <td>{{ data.date_collected }}</td>
+                    <td>{{ data.user.username }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="5">No data available.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

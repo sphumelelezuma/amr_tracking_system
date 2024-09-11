@@ -1,0 +1,151 @@
+/* profile.css */
+
+body {
+    background-color: #f8f9fa; /* Light background color */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #343a40; /* Dark header background */
+    color: #ffffff; /* White text color */
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Ensure header is on top */
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.profile img {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+}
+
+.profile span {
+    margin-left: 10px;
+    font-size: 16px;
+}
+
+aside {
+    background-color: #ffffff;
+    padding: 15px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 60px; /* Adjust if needed to account for header height */
+    left: 0;
+    width: 250px; /* Adjust width as needed */
+    height: calc(100vh - 60px); /* Adjust height to fill viewport minus header height */
+    overflow-y: auto; /* Allow scrolling if content overflows */
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    margin-bottom: 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #343a40;
+    font-size: 18px;
+}
+
+nav ul li a:hover {
+    color: #007bff; /* Highlight color */
+}
+
+main {
+    margin-left: 260px; /* Ensure main content doesn't overlap with sidebar */
+    padding-top: 60px; /* Ensure main content starts below the header */
+}
+
+.profile-section {
+    padding: 20px;
+}
+
+.profile-card {
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.profile-header {
+    border-bottom: 1px solid #dee2e6;
+    padding-bottom: 20px;
+    position: relative; /* To position buttons inside the profile header */
+}
+
+.profile-picture {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #dee2e6;
+}
+
+.username {
+    font-size: 22px;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+.profile-header button {
+    position: absolute;
+    bottom: 15px; /* Position buttons at the bottom of the profile header */
+}
+
+#choosePicBtn {
+    left: 0;
+}
+
+#updatePicBtn {
+    right: 0;
+}
+
+.info-item {
+    margin-bottom: 15px;
+}
+
+.profile-info {
+    font-size: 16px;
+}
+
+.profile-bio {
+    font-size: 16px;
+    color: #6c757d; /* Gray color for bio text */
+}
+
+.social-links a {
+    font-size: 24px;
+    color: #343a40;
+    margin-right: 10px;
+}
+
+.social-links a:hover {
+    color: #007bff; /* Highlight color */
+}
+
+/* Hide file input when not needed */
+#profilePicInput {
+    display: none;
+}
