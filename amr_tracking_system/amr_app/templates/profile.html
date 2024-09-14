@@ -18,8 +18,7 @@
     <header>
         <div class="logo">AMR Tracker</div>
         <div class="profile">
-            <img id="profileImage" src="{% static 'images/user-profile.jpg' %}" alt="Profile Picture">
-            <span>Tae</span>
+            <img id="profileImage" src="{{ user.userprofile.profile_picture.url }}" alt="Profile Picture" class="profile-picture rounded-circle">
         </div>
     </header>
     <aside>
@@ -43,28 +42,35 @@
                 <div class="profile-card card p-4">
                     <!-- Profile Header -->
                     <div class="profile-header text-center">
-                      <img id="profileImage" src="{{ user.userprofile.profile_picture.url }}" alt="Profile Picture" class="profile-picture rounded-circle">
+                        <img id="profileImage" src="{{ user.userprofile.profile_picture.url }}" alt="Profile Picture" class="profile-picture rounded-circle">
                         <h2 class="username mt-3">{{ user.username }}</h2>
-                        <input type="file" name="profile_picture" id="profilePicInput" class="d-none">
-                        <button type="button" id="choosePicBtn" class="btn btn-secondary">Choose Picture</button>
-                        <button class="btn btn-secondary mt-2" id="updatePicBtn">Update Profile Picture</button>
+
+                        <!-- Form for Profile Picture Upload -->
+                        <form id="profilePicForm" action="{% url 'update_profile_pic' %}" method="post" enctype="multipart/form-data" class="mt-4">
+                            {% csrf_token %}
+                            <input type="file" name="profile_picture" id="profilePicInput" class="d-none">
+                            <div class="btn-group" role="group">
+                                <button type="button" id="choosePicBtn" class="btn btn-secondary">Choose Picture</button>
+                                <button type="submit" id="updatePicBtn" class="btn btn-secondary">Update Profile Picture</button>
+                            </div>
+                        </form>
                     </div>
 
                     <!-- Profile Details -->
                     <article class="profile-details mt-4">
-                        <form id="profilePicForm" action="{% url 'update_profile_pic' %}" method="post" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            <button class="btn btn-primary mt-2" id="editProfileBtn">Edit Profile</button>
-                        </form>
                         <div class="info-item mt-3">
-                            <div id="profileBio" class="profile-bio">This is the current bio...</div>
-                            <textarea id="bioEdit" class="d-none form-control" rows="3"></textarea>
+                            <div id="profileBio" class="profile-bio">{{ user.userprofile.bio }}</div>
+                            <textarea id="bioEdit" class="d-none form-control" rows="3">{{ user.userprofile.bio }}</textarea>
                         </div>
+                        <button class="btn btn-primary mt-2" id="editProfileBtn">Edit Profile</button>
                     </article>
                 </div>
             </section>
             <!-- Other Content Below -->
         </div>
     </main>
+    <!-- Optional JavaScript for Bootstrap (if needed) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

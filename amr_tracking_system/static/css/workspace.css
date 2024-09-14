@@ -12,6 +12,7 @@ body {
     display: flex;
     flex-direction: column;
     height: 100vh;
+    overflow: hidden;
 }
 
 /* Header styling */
@@ -24,9 +25,15 @@ header {
     align-items: center;
 }
 
+/* Header logo and profile */
 header .logo {
     font-size: 24px;
     font-weight: bold;
+}
+
+header .profile {
+    display: flex;
+    align-items: center;
 }
 
 header .profile img {
@@ -74,13 +81,20 @@ main {
     padding: 20px;
     flex: 1;
     overflow-y: auto;
+    overflow-x: auto;
+    display: flex;
+    flex-direction: column;
 }
 
+/* Card styling */
 .card {
     border: 1px solid #dee2e6;
     border-radius: 0.25rem;
+    margin-bottom: 20px;
+    background-color: #ffffff;
 }
 
+/* Card header styling */
 .card-header {
     background-color: #f8f9fa;
     font-weight: bold;
@@ -88,7 +102,6 @@ main {
 
 /* Card body styling */
 .card-body {
-    background-color: #ffffff;
     padding: 15px;
 }
 
@@ -127,5 +140,19 @@ main {
 .card .card-body a.btn-warning:hover {
     background-color: #e0a800;
     border-color: #d39e00;
-    color: #212529;
+}
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+    aside {
+        width: 100%;
+        height: auto;
+        position: relative;
+        top: auto;
+        left: auto;
+    }
+
+    main {
+        margin-left: 0;
+    }
 }

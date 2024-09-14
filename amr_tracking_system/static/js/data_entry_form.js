@@ -38,6 +38,11 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
+        function submitForm() {
+            document.getElementById('myForm').action = "{% url 'data_review' %}";
+            document.getElementById('myForm').submit();
+        }
+
         // Function to handle new location addition
         function handleNewLocation() {
             return fetch('/add-location/', {

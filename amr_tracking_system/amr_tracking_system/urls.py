@@ -24,4 +24,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('amr_app.urls')),  # Include URLs from the app Frontend URLS
     path('api/', include('amr_app.urls')), # API URLs prefixed with 'api/'
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

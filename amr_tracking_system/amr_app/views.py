@@ -19,8 +19,41 @@ from .forms import ResistanceDataForm
 import plotly.express as px
 import pandas as pd
 import json
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseNotAllowed, HttpResponseForbidden
 from .forms import PathogenForm, LocationForm
+from django.db.models import Avg 
+from rest_framework.decorators import api_view
+from rest_framework.response import Response 
+from django.views.decorators.csrf import csrf_exempt
+from django.middleware.csrf import get_token
+
+@csrf_exempt  # Only needed if you’re not using the CSRF token
+def delete_resistance_data(request, data_id):
+    if request.method == 'POST':
+        resistance_data = get_object_or_404(ResistanceData, id=data_id)
+        resistance_data.delete()
+        return JsonResponse({'status': 'success'})
+    return JsonResponse({'status': 'error'}, status=400)
+
+def api_visualization_data(request):
+    # Query the data
+    resistance_data = ResistanceData.objects.all()
+
+    # Extract data for the charts
+    locations = list(resistance_data.values_list('location__name', flat=True).distinct())
+    resistance_percentages = list(resistance_data.values_list('resistance_percentage', flat=True))
+    pathogen_names = list(resistance_data.values_list('pathogen__name', flat=True).distinct())
+    pathogen_resistances = list(resistance_data.values_list('resistance_percentage', flat=True))
+
+    # Create a dictionary to hold the data
+    data = {
+        'resistance_labels': locations,
+        'resistance_data': resistance_percentages,
+        'pathogen_labels': pathogen_names,
+        'pathogen_data': pathogen_resistances
+    }
+
+    return JsonResponse(data)
 
 @login_required
 def submit_data(request):
@@ -74,34 +107,6 @@ def custom_login_view(request):
             return render(request, 'login.html', {'error': 'Invalid credentials'})
     return render(request, 'login.html')
 
-def visualization_dashboard(request):
-    # Query the data
-    resistance_data = ResistanceData.objects.all()
-
-    # Convert the QuerySet to a DataFrame
-    df = pd.DataFrame(list(resistance_data.values()))
-
-    # Create the Plotly scatter plot (for pathogen vs. resistance percentage)
-    fig = px.scatter(df, x='date_collected', y='resistance_percentage', color='pathogen')
-
-    # Convert the Plotly figure to HTML
-    chart_html = fig.to_html(full_html=False)
-
-    # Prepare the data for Chart.js (extract data for labels and values)
-    resistance_labels = df['pathogen'].tolist()  # You can modify based on how you want the labels
-    resistance_values = df['resistance_percentage'].tolist()  # Modify as per the needed data
-
-    # Convert the labels and data to JSON format for JavaScript
-    resistance_labels_json = json.dumps(resistance_labels)
-    resistance_values_json = json.dumps(resistance_values)
-
-    # Pass both the Plotly chart and Chart.js data to the template
-    return render(request, 'visualization_dashboard.html', {
-        'chart': chart_html,
-        'resistance_labels': resistance_labels_json,
-        'resistance_data': resistance_values_json
-    })
-
 def reports(request):
     return render(request, 'reports.html')
 
@@ -120,20 +125,16 @@ def create_profile(request):
     return render(request, 'create_profile.html', {'form': form})
 
 
+@login_required
 def update_profile_picture(request):
-    try:
-        user_profile = UserProfile.objects.get(user=request.user)
-    except UserProfile.DoesNotExist:
-        return redirect('create_profile')
-
     if request.method == 'POST':
-        form = ProfilePictureForm(request.POST, request.FILES, instance=user_profile)
+        form = ProfilePictureForm(request.POST, request.FILES, instance=request.user.userprofile)
         if form.is_valid():
             form.save()
-            return redirect('profile')
+            return redirect('profile')  # Or the appropriate redirect URL
     else:
-        form = ProfilePictureForm(instance=user_profile)
-
+        form = ProfilePictureForm(instance=request.user.userprofile)
+    
     return render(request, 'update_profile_picture.html', {'form': form})
 
 
@@ -190,11 +191,47 @@ def data_entry(request):
 
 @login_required
 def data_review(request):
+    print("Loged in user: ", request.user)  # Check console for this output
     resistance_data_list = ResistanceData.objects.filter(user=request.user)  # Display data entered by the logged-in user
     return render(request, 'data_review.html', {'resistance_data': resistance_data_list})
 
+# Visualization Dashboard view
+@login_required 
 def visualization_dashboard(request):
-    return render(request, 'visualization_dashboard.html')
+    # Fetch resistance data by location
+    resistance_data = ResistanceData.objects.filter(user=request.user).select_related('pathogen', 'location')
+
+    # Group resistance data by location for chart
+    locations = [data.location.name for data in resistance_data]
+    resistance_percentages = [float(data.resistance_percentage) for data in resistance_data]
+
+    # Group resistance data by pathogen and calculate average resistance percentage for each
+    pathogen_data = (
+        ResistanceData.objects
+        .filter(user=request.user) 
+        .values('pathogen__name')  # Group by pathogen name
+        .annotate(average_resistance=Avg('resistance_percentage'))  # Calculate average resistance
+    )
+
+    # Separate pathogen names and their average resistance percentages for the chart
+    pathogen_names = [entry['pathogen__name'] for entry in pathogen_data]
+    pathogen_resistances = [float(entry['average_resistance']) for entry in pathogen_data]
+
+    # Convert data to JSON for use in JavaScript
+    resistance_labels_json = json.dumps(locations)
+    resistance_values_json = json.dumps(resistance_percentages)
+    pathogen_labels_json = json.dumps(pathogen_names)
+    pathogen_values_json = json.dumps(pathogen_resistances)
+
+    # Convert data to JSON
+    context = {
+        'locations': json.dumps(locations),
+        'resistance_percentages': json.dumps(resistance_percentages),
+        'pathogen_names': json.dumps(pathogen_names),
+        'pathogen_resistances': json.dumps(pathogen_resistances)
+    }
+
+    return render(request, 'visualization_dashboard.html', context)
 
 def view_text_file(request, post_id):
     post = get_object_or_404(Post, id=post_id)
@@ -332,14 +369,14 @@ def add_comment(request, post_id):
 # Delete post view
 @login_required
 def delete_post(request, post_id):
+    # Get the post object based on the post_id
     post = get_object_or_404(Post, id=post_id)
-
-    # Ensure the user requesting deletion is the owner of the post
-    if post.user == request.user:
-        post.delete()
-        return redirect('newsfeed')
-    else:
-        return redirect('newsfeed')  # Or return an error message
+    
+    # If it's a POST request (i.e., the delete form is submitted)
+    if request.method == 'POST':
+        post.delete()  # Delete the post
+        return redirect('newsfeed')  # Redirect to the newsfeed or another page after deletion
+    
 
 # amr_app/views.py
 

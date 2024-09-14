@@ -21,9 +21,10 @@ def save_user_profile(sender, instance, **kwargs):
     instance.userprofile.save()
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    profile_picture = models.ImageField(upload_to='profile_pics/', default='profile_pics/default-profile.jpg')
-
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    profile_picture = models.ImageField(upload_to='profile_pics/', null=True, blank=True)
+    bio = models.TextField(blank=True, null=True)  # Add this field
+    
     def __str__(self):
         return self.user.username
 
@@ -36,7 +37,7 @@ class Pathogen(models.Model):
 
 class Location(models.Model):
     name = models.CharField(max_length=255)
-    type = models.CharField(max_length=50)
+    type = models.CharField(max_length=50, blank=True, null=True)
 
     def __str__(self):
         return self.name

@@ -19,7 +19,7 @@ class PathogenForm(forms.ModelForm):
     class Meta:
         model = Pathogen
         fields = ['name']  # Assuming Pathogen model has a 'name' field
-
+    
 class LocationForm(forms.ModelForm):
     class Meta:
         model = Location
@@ -28,7 +28,7 @@ class LocationForm(forms.ModelForm):
 class ProfilePictureForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ['profile_picture']
+        fields = ['bio', 'profile_picture']
 
 class PostForm(forms.ModelForm):
     class Meta:

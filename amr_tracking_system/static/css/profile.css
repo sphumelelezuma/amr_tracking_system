@@ -92,7 +92,10 @@ main {
 .profile-header {
     border-bottom: 1px solid #dee2e6;
     padding-bottom: 20px;
-    position: relative; /* To position buttons inside the profile header */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .profile-picture {
@@ -101,6 +104,7 @@ main {
     object-fit: cover;
     border-radius: 50%;
     border: 2px solid #dee2e6;
+    margin-bottom: 15px; /* Space between picture and username */
 }
 
 .username {
@@ -109,17 +113,23 @@ main {
     margin: 15px 0;
 }
 
-.profile-header button {
-    position: absolute;
-    bottom: 15px; /* Position buttons at the bottom of the profile header */
+.profile-header form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#choosePicBtn,
+#updatePicBtn {
+    margin-top: 10px;
 }
 
 #choosePicBtn {
-    left: 0;
+    margin-right: 10px;
 }
 
 #updatePicBtn {
-    right: 0;
+    margin-top: 5px; /* Adjust if needed to avoid overlap */
 }
 
 .info-item {
@@ -133,6 +143,15 @@ main {
 .profile-bio {
     font-size: 16px;
     color: #6c757d; /* Gray color for bio text */
+}
+
+textarea#bioEdit {
+    width: 100%;
+    margin-top: 10px;
+}
+
+#editProfileBtn {
+    margin-top: 10px;
 }
 
 .social-links a {

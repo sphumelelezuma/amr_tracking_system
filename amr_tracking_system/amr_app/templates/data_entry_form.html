@@ -18,7 +18,12 @@
         <li><a href="/workspace/">Workspace</a></li>
         <li><a href="/data_review/">Data Review</a></li>
         <li><a href="/visualization_dashboard/">Dashboard</a></li>
-        <li><a href="/logout/">Logout</a></li>
+        <li>
+            <form method="POST" action="{% url 'logout' %}" id="logout-form" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit">Logout</button>
+            </form>
+        </li>
     </ul>
     <div class="menu-icon">
         <span class="menu-line"></span>

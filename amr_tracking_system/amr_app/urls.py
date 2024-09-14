@@ -4,6 +4,10 @@ from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 from . import views
 from .views import (
+    api_visualization_data, 
+    data_entry,
+    data_review,
+    visualization_dashboard, 
     add_pathogen,  # Add view for adding pathogens
     add_location,  # Add view for adding locations
     view_text_file,
@@ -34,7 +38,7 @@ urlpatterns = [
     path('newsfeed/', views.newsfeed_view, name='newsfeed'),
     path('api/newsfeed/', views.newsfeed_view, name='newsfeed'),
     path('newsfeed/reaction/<int:post_id>/<str:reaction_type>/', views.add_reaction, name='add_reaction'),
-    path('newsfeed/comment/<int:post_id>/', views.add_comment, name='add_comment'),
+    path('newsfeed/comment/<int:post_id>/', views.add_comment, name='add_comment'), 
     path('delete_post/<int:post_id>/', views.delete_post, name='delete_post'),
     path('view_text_file/<int:post_id>/', view_text_file, name='view_text_file'),
     path('workspace/', views.workspace, name='workspace'),
@@ -43,6 +47,7 @@ urlpatterns = [
     path('search/', views.search, name='search'),
     path('data_entry/', views.data_entry, name='data_entry'),
     path('data_review/', views.data_review, name='data_review'),
+    path('data_review/delete/<int:data_id>/', views.delete_resistance_data, name='delete_resistance_data'),
     path('visualization_dashboard/', views.visualization_dashboard, name='visualization_dashboard'),
     path('update_profile_pic/', views.update_profile_picture, name='update_profile_pic'),
     path('update-profile-picture/', views.update_profile_picture, name='update_profile_picture'),
@@ -55,6 +60,8 @@ urlpatterns = [
     # ... existing URL patterns ...
 
     # API Endpoints
+    path('api/delete_entry/<int:entry_id>/', views.delete_resistance_data, name='delete_resistance_data'),
+    path('api/visualization_data/', api_visualization_data, name='api_visualization_data'),
     path('api/pathogens/', PathogenListCreateAPIView.as_view(), name='api_pathogen_list_create'),
     path('api/pathogens/<int:pk>/', PathogenRetrieveUpdateDestroyAPIView.as_view(), name='api_pathogen_detail'),
     

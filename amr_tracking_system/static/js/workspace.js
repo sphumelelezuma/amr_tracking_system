@@ -1,5 +1,11 @@
-document.addEventListener('DOMContentLoaded', function () {
-    // Example JavaScript for interactivity
+// JavaScript for additional functionalities, if needed
 
-    // Implement functionality for chat or other interactive elements
+// Example: Smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
 });

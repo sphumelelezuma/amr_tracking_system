@@ -5,25 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visualization Dashboard</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/visualization_dashboard.css' %}">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="{% static 'css/visualization.css' %}">
 </head>
 <body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'workspace' %}">Workspace</a></li>
+                <li><a href="{% url 'data_entry' %}">Data Entry</a></li>
+                <li><a href="{% url 'data_review' %}">Data Review</a></li>
+                <li><a href="{% url 'publications' %}">Publications</a></li>
+                <li><a href="{% url 'reports' %}">Reports</a></li>
+                <li><a href="{% url 'settings' %}">Settings</a></li>
+                <li>
+                    <form method="POST" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="logout-button">Logout</button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+    </header>
 
-<div class="container">
-    <h1>Visualization Dashboard</h1>
+    <div class="container">
+        {% if user.is_authenticated %}
+            <h1>Visualization Dashboard</h1>
+            <p>Welcome, {{ user.username }}!</p>
 
-    <div class="chart-container">
-        <canvas id="resistanceChart"></canvas>
+            <!-- Bar chart for Resistance Percentage by Location -->
+            <div class="chart-container">
+                <canvas id="resistanceChart" width="400" height="200"></canvas>
+            </div>
+
+            <!-- Another chart for Top Pathogens with Highest Resistance -->
+            <div class="chart-container">
+                <canvas id="topPathogensChart" width="400" height="200"></canvas>
+            </div>
+        {% else %}
+            <p>You need to be logged in to view this dashboard. <a href="{% url 'login' %}">Login here</a></p>
+        {% endif %}
     </div>
+    
+    <!-- Load Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <!-- Pass the data from Django to JavaScript through hidden inputs or data attributes -->
-    <input type="hidden" id="resistanceLabels" value='{{ resistance_labels|escapejs }}'>
-    <input type="hidden" id="resistanceData" value='{{ resistance_data|escapejs }}'>
-
-    <!-- Link to external JS file -->
-    <script src="{% static 'js/visualization_dashboard.js' %}"></script>
-</div>
-
+    <!-- Link to your custom JavaScript file -->
+    <script src="{% static 'js/visualization.js' %}"></script>
 </body>
 </html>

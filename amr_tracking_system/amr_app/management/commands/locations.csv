@@ -1,91 +1,263 @@
-Name;Type
-University of Cape Town (UCT);University
-University of the Witwatersrand (Wits);University
-University of Pretoria (UP);University
-University of KwaZulu-Natal (UKZN);University
-Stellenbosch University (SU);University
-University of Johannesburg (UJ);University
-University of the Western Cape (UWC);University
-University of South Africa (UNISA);University
-Rhodes University;University
-Nelson Mandela University (NMU);University
-University of Limpopo (UL);University
-University of the Free State (UFS);University
-University of Venda (UNIVEN);University
-University of Mpumalanga (UMP);University
-Sefako Makgatho Health Sciences University;University
-Central University of Technology (CUT);University
-Durban University of Technology (DUT);University
-Cape Peninsula University of Technology (CPUT);University
-Vaal University of Technology (VUT);University
-Walter Sisulu University (WSU);University
-Sol Plaatje University;University
-Tshwane University of Technology (TUT);University
-Mangosuthu University of Technology (MUT);University
-South African National Institute for the Deaf (SAID);University
-University of Fort Hare (UFH);University
-University of Pretoria (UP);University
-Chris Hani Baragwanath Academic Hospital;Hospital
-Steve Biko Academic Hospital;Hospital
-Charlotte Maxeke Johannesburg Academic Hospital;Hospital
-Helen Joseph Hospital;Hospital
-Wits Donald Gordon Medical Centre;Hospital
-Garankuwa Hospital;Hospital
-Tembisa Hospital;Hospital
-Dr. George Mukhari Hospital;Hospital
-Jabulani Hospital;Hospital
-Groote Schuur Hospital;Hospital
-Red Cross War Memorial Children's Hospital;Hospital
-Tygerberg Hospital;Hospital
-Victoria Hospital;Hospital
-Lentegeur Hospital;Hospital
-Khayelitsha District Hospital;Hospital
-Addington Hospital;Hospital
-King Edward VIII Hospital;Hospital
-Inkosi Albert Luthuli Central Hospital;Hospital
-Nelson Mandela Hospital;Hospital
-Greytown Hospital;Hospital
-Livingstone Hospital;Hospital
-Frere Hospital;Hospital
-Nelson Mandela Academic Hospital;Hospital
-Walter Sisulu University Hospital;Hospital
-Elim Hospital;Hospital
-Mankweng Hospital;Hospital
-Polokwane Provincial Hospital;Hospital
-Rob Ferreira Hospital;Hospital
-Barberton Hospital;Hospital
-Mapulaneng Hospital;Hospital
-Universitas Academic Hospital;Hospital
-Pelonomi Regional Hospital;Hospital
-Mofumahadi Manapo Mopeli Regional Hospital;Hospital
-Klerksdorp/Tshepong Hospital Complex;Hospital
-Rustenburg Provincial Hospital;Hospital
-Bophelong Hospital;Hospital
-Kimberley Hospital;Hospital
-Upington Hospital;Hospital
-Postmasburg Hospital;Hospital
-PathCare;Laboratory
-Ampath;Laboratory
-Netcare Laboratory Services;Laboratory
-Lancet Laboratories;Laboratory
-Vitalab;Laboratory
-Medicross Laboratories;Laboratory
-LabCorp;Laboratory
-Gauteng Forensic Pathology Services;Laboratory
-Western Cape Government Health Laboratory Services;Laboratory
-KwaZulu-Natal Department of Health Laboratory Services;Laboratory
-Council for Scientific and Industrial Research (CSIR);Research Lab
-South African National Bioinformatics Institute (SANBI);Research Lab
-National Health Laboratory Service (NHLS);Research Lab
-National Institute for Communicable Diseases (NICD);Research Lab
-South African Bureau of Standards (SABS);Research Lab
-University of Cape Town Research Laboratories;Research Lab
-University of the Witwatersrand Research Laboratories;Research Lab
-Stellenbosch University Research Laboratories;Research Lab
-University of Pretoria Research Laboratories;Research Lab
-University of KwaZulu-Natal Research Laboratories;Research Lab
-SAB Miller Laboratories;Industrial Lab
-Bosch Laboratories;Industrial Lab
-Sappi Laboratories;Industrial Lab
-ArcelorMittal Laboratories;Industrial Lab
-Sasol Laboratories;Industrial Lab
+"Name;Type"
+"University of Cape Town (UCT);University"
+"University of the Witwatersrand (Wits);University"
+"University of Pretoria (UP);University"
+"University of KwaZulu-Natal (UKZN);University"
+"Stellenbosch University (SU);University"
+"University of Johannesburg (UJ);University"
+"University of the Western Cape (UWC);University"
+"University of South Africa (UNISA);University"
+"Rhodes University;University"
+"Nelson Mandela University (NMU);University"
+"University of Limpopo (UL);University"
+"University of the Free State (UFS);University"
+"University of Venda (UNIVEN);University"
+"University of Mpumalanga (UMP);University"
+"Sefako Makgatho Health Sciences University;University"
+"Central University of Technology (CUT);University"
+"Durban University of Technology (DUT);University"
+"Cape Peninsula University of Technology (CPUT);University"
+"Vaal University of Technology (VUT);University"
+"Walter Sisulu University (WSU);University"
+"Sol Plaatje University;University"
+"Tshwane University of Technology (TUT);University"
+"Mangosuthu University of Technology (MUT);University"
+"South African National Institute for the Deaf (SAID);University"
+"University of Fort Hare (UFH);University"
+"University of Pretoria (UP);University"
+"Chris Hani Baragwanath Academic Hospital;Hospital"
+"Steve Biko Academic Hospital;Hospital"
+"Charlotte Maxeke Johannesburg Academic Hospital;Hospital"
+"Helen Joseph Hospital;Hospital"
+"Wits Donald Gordon Medical Centre;Hospital"
+"Garankuwa Hospital;Hospital"
+"Tembisa Hospital;Hospital"
+"Dr. George Mukhari Hospital;Hospital"
+"Jabulani Hospital;Hospital"
+"Groote Schuur Hospital;Hospital"
+"Red Cross War Memorial Children's Hospital;Hospital"
+"Tygerberg Hospital;Hospital"
+"Victoria Hospital;Hospital"
+"Lentegeur Hospital;Hospital"
+"Khayelitsha District Hospital;Hospital"
+"Addington Hospital;Hospital"
+"King Edward VIII Hospital;Hospital"
+"Inkosi Albert Luthuli Central Hospital;Hospital"
+"Nelson Mandela Hospital;Hospital"
+"Greytown Hospital;Hospital"
+"Livingstone Hospital;Hospital"
+"Frere Hospital;Hospital"
+"Nelson Mandela Academic Hospital;Hospital"
+"Walter Sisulu University Hospital;Hospital"
+"Elim Hospital;Hospital"
+"Mankweng Hospital;Hospital"
+"Polokwane Provincial Hospital;Hospital"
+"Rob Ferreira Hospital;Hospital"
+"Barberton Hospital;Hospital"
+"Mapulaneng Hospital;Hospital"
+"Universitas Academic Hospital;Hospital"
+"Pelonomi Regional Hospital;Hospital"
+"Mofumahadi Manapo Mopeli Regional Hospital;Hospital"
+"Klerksdorp/Tshepong Hospital Complex;Hospital"
+"Rustenburg Provincial Hospital;Hospital"
+"Bophelong Hospital;Hospital"
+"Kimberley Hospital;Hospital"
+"Upington Hospital;Hospital"
+"Postmasburg Hospital;Hospital"
+"PathCare;Laboratory"
+"Ampath;Laboratory"
+"Netcare Laboratory Services;Laboratory"
+"Lancet Laboratories;Laboratory"
+"Vitalab;Laboratory"
+"Medicross Laboratories;Laboratory"
+"LabCorp;Laboratory"
+"Gauteng Forensic Pathology Services;Laboratory"
+"Western Cape Government Health Laboratory Services;Laboratory"
+"KwaZulu-Natal Department of Health Laboratory Services;Laboratory"
+"Council for Scientific and Industrial Research (CSIR);Research Lab"
+"South African National Bioinformatics Institute (SANBI);Research Lab"
+"National Health Laboratory Service (NHLS);Research Lab"
+"National Institute for Communicable Diseases (NICD);Research Lab"
+"South African Bureau of Standards (SABS);Research Lab"
+"University of Cape Town Research Laboratories;Research Lab"
+"University of the Witwatersrand Research Laboratories;Research Lab"
+"Stellenbosch University Research Laboratories;Research Lab"
+"University of Pretoria Research Laboratories;Research Lab"
+"University of KwaZulu-Natal Research Laboratories;Research Lab"
+"SAB Miller Laboratories;Industrial Lab"
+"Bosch Laboratories;Industrial Lab"
+"Sappi Laboratories;Industrial Lab"
+"ArcelorMittal Laboratories;Industrial Lab"
+"Sasol Laboratories;Industrial Lab"
+"Ampath Makhado;Laboratory"
+"Ampath Somerset;Laboratory"
+"Ampath Vincent Palloti;Laboratory"
+"National Health Laboratory Services Public Health Laboratory Service;Laboratory"
+"Rundu Private Laboratory;Laboratory"
+"Swamed Laboratory;Laboratory"
+"Katutura Laboratory;Laboratory"
+"Ampath Phalaborwa;Laboratory"
+"Ampath Secunda;Laboratory"
+"NHLS Northdale;Laboratory"
+"Ampath Rosebank;Laboratory"
+"NHLS-Dora Nginza;Laboratory"
+"NHLS Inkosi Albert Luthuli ;Laboratory"
+"Khumba Iron Ore;Laboratory"
+"ATS Labs;Laboratory"
+"BP Technology Centre;Laboratory"
+"CSIR;Laboratory"
+"Thekwini Soils Laboratory;Laboratory"
+"Brink Towing  Systems;Laboratory"
+"Coallab (Pty) Ltd;Laboratory"
+"Bemlab (Previously Convance Central Laboratory Services);Laboratory"
+"SMT Labs Pty Ltd;Laboratory"
+"Thermitrex (Pty) Ltd;Laboratory"
+"Dolphin Coast Landfill Management (Pty) Ltd;Laboratory"
+SGS Laboratory Services GHANA Ltd
+"Bamako SGS Minerals Laboratory;Laboratory"
+"SGS Laboratory Services Burkina Faso SA;Laboratory"
+"Nelson Mandela Metropolitan University Testing: Uyilo Testing Laboratory;Laboratory"
+"AquaStrata Laboratories;Laboratory"
+"Samancor Chrome - Ferrometals;Laboratory"
+"Mitra SK South Africa Pty Ltd;Laboratory"
+Eskom Holdings SOC Limited
+"Amatola Water ;Laboratory"
+"Resource Quality Laboratory;Laboratory"
+"Vitrovian Analytical Services (Pty) Ltd;Laboratory"
+"Tharisa Minerals Laboratory;Laboratory"
+"Facts Laboratory (Food Allergy Consulting and Testing Services);Laboratory"
+"Testit Labs  (Pty) Ltd;Laboratory"
+"Skyside (Pty) Ltd;Laboratory"
+"TACS Laboratories;Laboratory"
+"Arcelor Mittal trading as Integral Laboratories;Laboratory"
+"EPC  Laboratories;Laboratory"
+"Suntech-Geomet Laboratory Analytical Service Division;Laboratory"
+SGS SA Pty Ltd
+PhotovoltaicTesting Laboratory- Nelson Mandela Metropolitan University
+"Institute for Ground water Studies Laboratory (UFS);Laboratory"
+Eskom Holdings SOC Ltd
+"Western Provincial Vet Lab;Laboratory"
+"National Quality Control Laboratory;Laboratory"
+"Ampath Lephalale;Laboratory"
+"Ampath Lephalale;Laboratory"
+"National Early Infant Diagnosis Reference (EID);Laboratory"
+"Ampath Kloof;Laboratory"
+"NHLS Ermelo;Laboratory"
+"NHLS Tshepong;Laboratory"
+"NHLS Tshepong;Laboratory"
+"Lancet Zamokuhle;Laboratory"
+"Lancet Olivedale;Laboratory"
+"Central Public Health Lab Uganda;Laboratory"
+"UCT Pharmacology;Laboratory"
+"NHLS IALCH Micro;Laboratory"
+"Lancet Zimbabwe;Laboratory"
+"Ampath Robinson;Laboratory"
+"Pathcare Rondebosch;Laboratory"
+"Vermaak & Partners Glynnwood Laboratory;Laboratory"
+NIP
+"Ambio environmental management (Pty) Ltd;Laboratory"
+"Automotive Brake Test Institute SA;Laboratory"
+"QMS Laboratories (Pty) Ltd;Laboratory"
+"SA Weather Services;Laboratory"
+"SAIW Materials Testing Laboratory;Laboratory"
+"Mosslab Roadlab JV;Laboratory"
+"Siza Coal Services;Laboratory"
+"Exova Jones Environmental Laboratory South Africa (Pty) Ltd;Laboratory"
+"National Health Laboratory Services;Laboratory"
+"Biotox Laboratory Services;Laboratory"
+"SciCorp Laboratories Pty Ltd;Laboratory"
+"SGS Richards Bay Coal Terminal Laboratory;Laboratory"
+"Shell Petroleum development Company;Laboratory"
+"Eskom Camden Power Station Laboratories;Laboratory"
+"Aspirata Testing Auditing and Certification (Pty) Ltd- Aspirata Microbiological and Chemical Laboratory;Laboratory"
+"Aspirata Testing Auditing and Certification (Pty) Ltd- Aspirata Microbiological and Chemical Laboratory;Laboratory"
+"Go-Consult ;Laboratory"
+"Defy Appliances (Pty) Ltd;Laboratory"
+"Acti-Chem (PTY) Ltd;Laboratory"
+"Interwaste (Pty) Ltd;Laboratory"
+"Ready Lead Assay Laboratory;Laboratory"
+"Metron Analytical Laboratory;Laboratory"
+"SGS Tanzania Superintendace Company Limited;Laboratory"
+"Intertek Testing services SA (Pty) Ltd;Laboratory"
+"XLab Earth  Science;Laboratory"
+"Kenya Bureau of standards;Laboratory"
+"Simlab Pty Limited - Water Division ;Laboratory"
+"Specialised Testing Laboratory (Pty) Ltd;Laboratory"
+"MS Mabuya Civil Lab;Laboratory"
+"Earthinv Lab and Geotechnical Consulting;Laboratory"
+"Megaton Systems (Pty) Ltd T/A MTEx Laboratories;Laboratory"
+"Metchem Laboratories;Laboratory"
+"Zamangwane Laboratory;Laboratory"
+"In2Foods Strand PTY Ltd;Laboratory"
+Sibanye Gold Ltd
+"CSIR -Non Wovens & Composites Lab;Laboratory"
+"Kenya Bureau of standards;Laboratory"
+"Mauritius Standards Bureau;Laboratory"
+"South African National Blood Transfusion Service;Laboratory"
+"ARC-Onderstepoort - TADP;Laboratory"
+"UP of Pretoria Milk Laboratory;Laboratory"
+"KENCHIC ;Laboratory"
+"UFS: South African National Control Laboratory for Biological Products;Laboratory"
+"Pathcare Gariep;Laboratory"
+"Ampath Rustenburg (Medicare);Laboratory"
+NIP
+"NHLS Kimberley;Laboratory"
+"Medical Research Council;Laboratory"
+"Tuberculosis Reference Laboratory Bamenda;Laboratory"
+"Nigeria Institute of Medical Research;Laboratory"
+"DNALYSIS (PTY)LTD;Laboratory"
+"BUEA Regional Hospital laboratory;Laboratory"
+"Bamenda Regional Hospital laboratory;Laboratory"
+"APIN Supported Laboratory;Laboratory"
+"Ampath Gateway;Laboratory"
+"NHLS Kroonstad Boitumelo Hospital Laboratory;Laboratory"
+"Drs Gritzman & Thatcher Inc.;Laboratory"
+"NHLS Grey's Laboratory;Laboratory"
+"NHLS Prince Mshiyeni Memorial Hospital Laboratory;Laboratory"
+"Lancet Victoria Island;Laboratory"
+"NHLS Edendale;Laboratory"
+"NHLS Ngwelezana ;Laboratory"
+"NHLS Pelonomi;Laboratory"
+"NHLS IALC Cytology;Laboratory"
+"NHLS Helen Joseph Lab;Laboratory"
+"Mpumamanzi Coal Services Pty Ltd;Laboratory"
+"Gert Sibande DM Water Quality Lab;Laboratory"
+Aspen Nutritionals
+"SGS Leuwpan Site lab;Laboratory"
+"Langa Geotechnial Services (Pty) Ltd;Laboratory"
+"Nestle R & D Centre Abidjan;Laboratory"
+"Eurolux Photometric Testing Laboratory;Laboratory"
+"National Asphalt (PTY) Ltd;Laboratory"
+"LTG Civil Services cc;Laboratory"
+"Abiolabs;Laboratory"
+SGS Mali Sarlu
+ALS Inspection (Pty) Ltd
+"Eskom Holdings SOC Ltd Kendal Power Station;Laboratory"
+"Labco EC;Laboratory"
+"Indlela Soils Laboratory ;Laboratory"
+SGS Mineral Services Mali Sarlu
+"Milkolab;Laboratory"
+"Meetse Tech Laboratory Services;Laboratory"
+"Intertek Minerals Tarkwa;Laboratory"
+Eskom Holdings SOC Limited
+"Mocha Labs;Laboratory"
+"Leather  Industry Development Institute (LIDI);Laboratory"
+"Dekra industrial RSA (Pty) Ltd;Laboratory"
+"Peter Johnson Laboratories;Laboratory"
+"Godwana Environmental Solutions International (Pty) Ltd;Laboratory"
+"Chem Nutri Analytical (Pty) Ltd;Laboratory"
+"SAGL Crop Protection Division;Laboratory"
+"Burea Veritas Inspectorate Laboratories- Tendele;Laboratory"
+"Mpumamanzi Laboratory Services ;Laboratory"
+"HBS Aluminium Systems;Laboratory"
+Eskom Holdings SOC Ltd
+"iSert (Pty) Ltd;Laboratory"
+"Ronewa Analytical Laboratory (Pty) Ltd;Laboratory"
+"Assmang Cato Ridge Works Laboratory;Laboratory"
+"Precision oil Laboratories;Laboratory"
+"South African National Blood Transfusion Service;Laboratory"
+"South African National Blood Transfusion Service;Laboratory"
+"Vetlab Zambia Limited;Laboratory"
+"Northern Cape Provincial Veterinary Laboratory;Laboratory"
+"IDEXX (Pty) Ltd ;Laboratory"
+Dept. of Agric & Rural: Allerton Prov. Vet

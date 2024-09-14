@@ -5,13 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Review</title>
     {% load static %}
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/data_review.css' %}">
+    <!-- Link to your custom JavaScript file -->
+    <script src="{% static 'js/data_review.js' %}" defer></script>
 </head>
 <body>
 
-<div class="container">
+<!-- Responsive Navigation Bar -->
+<nav class="navbar custom-navbar">
+    <a class="navbar-brand" href="#">AMR Tracker</a>
+    <button class="navbar-toggler" type="button" onclick="toggleNav()">
+        ☰
+    </button>
+    <div class="navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/data_entry/">Data Entry</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/workspace/">Workspace</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/data_review/">Data Review</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/visualization_dashboard/">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/reports/">Reports</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/settings/">Settings</a>
+            </li>
+            <li class="nav-item">
+                <form method="POST" action="{% url 'logout' %}" id="logout-form" style="display: inline;">
+                    {% csrf_token %}
+                    <button class="btn btn-danger" type="submit">Logout</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container mt-5">
     <h1>Data Review</h1>
-    <table>
+    <table class="table table-bordered mt-4">
         <thead>
             <tr>
                 <th>Pathogen</th>
@@ -19,6 +61,7 @@
                 <th>Resistance Percentage</th>
                 <th>Date Collected</th>
                 <th>User</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -29,15 +72,26 @@
                     <td>{{ data.resistance_percentage }}%</td>
                     <td>{{ data.date_collected }}</td>
                     <td>{{ data.user.username }}</td>
+                    <td>
+                        <button class="btn btn-danger delete-btn" data-id="{{ data.id }}">Delete</button>
+                    </td>
                 </tr>
             {% empty %}
                 <tr>
-                    <td colspan="5">No data available.</td>
+                    <td colspan="6">No data available.</td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
 </div>
+
+<!-- Custom JS for Navbar Toggle -->
+<script>
+function toggleNav() {
+    const nav = document.getElementById('navbarNav');
+    nav.style.display = nav.style.display === 'block' ? 'none' : 'block';
+}
+</script>
 
 </body>
 </html>
